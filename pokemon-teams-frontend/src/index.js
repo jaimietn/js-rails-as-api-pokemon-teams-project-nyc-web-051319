@@ -30,7 +30,7 @@ function addSingleTrainerToPage(trainerObj) {
 }
 
 function getTrainersPokemonAndDisplayOnPage(pokemonsArr) {
-  console.log(pokemonsArr)
+  // console.log(pokemonsArr)
   // for each pokemon in the array we want to create a list item
   const newArr = pokemonsArr.map(pokemon => {
     return `
@@ -51,7 +51,7 @@ function addAllEventListenersToPage() {
       getAndAddPokemonToPage(e.target.dataset.trainerId, e)
     }
     if (e.target.innerText === 'Release') {
-      releasePokemon(e.target.dataset.pokemonId)
+      releasePokemon(e)
     }
   })
 }
@@ -84,8 +84,8 @@ function addSinglePokemon(pokemonObj, e) {
   `
 }
 
-function releasePokemon(pokemonId) {
-  fetch(POKEMONS_URL + '/' + pokemonId, {
+function releasePokemon(e) {
+  fetch(POKEMONS_URL + '/' + e.target.dataset.pokemonId, {
     method: 'DELETE'
   })
     .then(e.target.parentElement.remove())
